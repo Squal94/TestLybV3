@@ -3,7 +3,7 @@ import arrow from "./angle-arrow-down.png";
 // import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const SelectItem = ({ annotationRanges }) => {
+function SelectItem({ arrayProps }) {
   const [option, setOption] = useState("");
   const [selected, setSelected] = useState(false);
 
@@ -36,7 +36,7 @@ const SelectItem = ({ annotationRanges }) => {
         />
       </div>
       <ul className="selectItem__list hide">
-        {annotationRanges.map((unit) => (
+        {arrayProps.map((unit) => (
           <li
             className="selectItem__list--option"
             onClick={() => {
@@ -52,9 +52,10 @@ const SelectItem = ({ annotationRanges }) => {
       </ul>
     </div>
   );
-};
+}
+
 SelectItem.propTypes = {
-  annotationRanges: PropTypes.arrayOf(
+  arrayProps: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       abbreviation: PropTypes.string.isRequired,
