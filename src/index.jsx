@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import arrow from "./angle-arrow-down.png";
 // import styled from "styled-components";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
-const SelectItem = (props) => {
+const SelectItem = ({ annotationRanges }) => {
   const [option, setOption] = useState("");
   const [selected, setSelected] = useState(false);
 
@@ -36,7 +36,7 @@ const SelectItem = (props) => {
         />
       </div>
       <ul className="selectItem__list hide">
-        {props.map((unit) => (
+        {annotationRanges.map((unit) => (
           <li
             className="selectItem__list--option"
             onClick={() => {
@@ -52,6 +52,14 @@ const SelectItem = (props) => {
       </ul>
     </div>
   );
+};
+SelectItem.propTypes = {
+  annotationRanges: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      abbreviation: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
 };
 
 export { SelectItem };
